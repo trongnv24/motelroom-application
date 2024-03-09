@@ -46,5 +46,26 @@ public class RoomServiceImpl implements RoomService {
         RoomResponse response = convertEntityToRoomResponse(entity);
         log.info(" === Finish api getById room, Room Id : {} === ", response.getId());
         return response;
+
+
+    }
+
+    @Override
+    public RoomResponse update(RoomRequest request, String id) {
+        log.info(" === Start api update room === ");
+        log.info(" === Request Body : {}, String id : {} === ", request, id);
+        Optional<RoomEntity> optionalRoom = roomRepository.findById(id);
+        if (!optionalRoom.isPresent()){
+            throw new RuntimeException();
+        }
+        RoomEntity entity = optionalRoom.get();
+        entity.setName(request.getName());
+        entity.setAcreage(request.getAcreage());
+        entity.setLocation(request.getLocation());
+        entity.setPrice(request.getPrice());
+        entity = roomRepository.save(entity);
+        RoomResponse response = convertEntityToRoomResponse(entity);
+        log.info(" === Finish api update room, Room Id {} : ", response.getId());
+        return response;
     }
 }
