@@ -5,6 +5,7 @@ import TrainingjavaSpringboot.motel.room.dto.response.RoomResponse;
 import TrainingjavaSpringboot.motel.room.service.RoomService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,12 +29,12 @@ public class RoomController {
     }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public RoomResponse getById(@PathVariable ("id") String id) {
+    public ResponseEntity<?> getById(@PathVariable ("id") String id) {
         log.info(" === Start api getById room === ");
         log.info(" === String id : {} === ", id);
         RoomResponse response = service.getById(id);
         log.info(" === Finish api getById room, Room Id : {} === ", response.getId());
-        return response;
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
