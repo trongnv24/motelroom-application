@@ -3,6 +3,7 @@ package TrainingjavaSpringboot.motel.room.service.impl;
 import TrainingjavaSpringboot.motel.room.dto.request.RoomRequest;
 import TrainingjavaSpringboot.motel.room.dto.response.RoomResponse;
 import TrainingjavaSpringboot.motel.room.entity.RoomEntity;
+import TrainingjavaSpringboot.motel.room.exception.NotFoundException;
 import TrainingjavaSpringboot.motel.room.repository.RoomRepository;
 import TrainingjavaSpringboot.motel.room.service.RoomService;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +40,7 @@ public class RoomServiceImpl implements RoomService {
         log.info(" === String id : {} ==== ", id);
         Optional<RoomEntity> optionalRoom = roomRepository.findById(id);
         if (!optionalRoom.isPresent()){
-            throw new RuntimeException();
+            throw new NotFoundException("Không tìm thấy", id , null);
         }
         RoomEntity entity = optionalRoom.get();
         entity = roomRepository.save(entity);
