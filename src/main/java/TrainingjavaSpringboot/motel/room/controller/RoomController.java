@@ -26,4 +26,13 @@ public class RoomController {
         log.info(" === Finish api create new room, Room Id : {} ", response.getId());
         return response;
     }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public RoomResponse getById(@PathVariable ("id") String id) {
+        log.info(" === Start api getById room === ");
+        log.info(" === String id : {} === ", id);
+        RoomResponse response = service.getById(id);
+        log.info(" === Finish api getById room, Room Id : {} === ", response.getId());
+        return response;
+    }
 }

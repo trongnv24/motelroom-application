@@ -6,4 +6,6 @@ import TrainingjavaSpringboot.motel.room.dto.response.RoomResponse;
 public interface RoomService {
 
     RoomResponse create (RoomRequest request);
+
+    RoomResponse getById(String id );
 }
