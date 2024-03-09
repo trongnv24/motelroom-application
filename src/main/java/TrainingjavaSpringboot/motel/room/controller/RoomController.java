@@ -35,4 +35,13 @@ public class RoomController {
         log.info(" === Finish api getById room, Room Id : {} === ", response.getId());
         return response;
     }
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public RoomResponse update( @RequestBody RoomRequest request, @PathVariable ("id") String id){
+        log.info(" === Start api update room === ");
+        log.info(" === Request Body : {}, String id  : {} === ", request, id);
+        RoomResponse response = service.update(request, id);
+        log.info(" === Finish api update room, Room Id {} : ", response.getId());
+        return response;
+    }
 }

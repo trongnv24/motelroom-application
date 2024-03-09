@@ -8,4 +8,6 @@ public interface RoomService {
     RoomResponse create (RoomRequest request);
 
     RoomResponse getById(String id );
+
+    RoomResponse update(RoomRequest request, String id);
 }
