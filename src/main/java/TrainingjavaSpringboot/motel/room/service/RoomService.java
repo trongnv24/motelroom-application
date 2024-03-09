@@ -10,4 +10,6 @@ public interface RoomService {
     RoomResponse getById(String id );
 
     RoomResponse update(RoomRequest request, String id);
+
+    void deleteById(String id);
 }

@@ -68,4 +68,16 @@ public class RoomServiceImpl implements RoomService {
         log.info(" === Finish api update room, Room Id {} : ", response.getId());
         return response;
     }
+
+    @Override
+    public void deleteById(String id) {
+        log.info(" === Start api delete room === ");
+        log.info(" === String id : {} === ");
+        Optional<RoomEntity> optionalRoom = roomRepository.findById(id);
+        if (!optionalRoom.isPresent()){
+            throw new RuntimeException();
+        }
+        log.info(" === Finish api delete room, Room Id {} : ");
+        roomRepository.deleteById(id);
+    }
 }
